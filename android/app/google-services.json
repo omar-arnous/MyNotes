@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "630607896229",
+    "project_id": "my-notes-898bc",
+    "storage_bucket": "my-notes-898bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630607896229:android:f95c20adb6791d0c7c774c",
+        "android_client_info": {
+          "package_name": "com.arnous.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeKR8crsSV7Y5HQ1hnysajK3oUaLGprSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630607896229-ihgjhge7ma9i297ltuam6dt0605k70dg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arnous.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630607896229:android:97f8b7c5116046237c774c",
+        "android_client_info": {
+          "package_name": "com.example.my_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeKR8crsSV7Y5HQ1hnysajK3oUaLGprSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630607896229-ihgjhge7ma9i297ltuam6dt0605k70dg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arnous.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630607896229:android:77111c4eabe9678e7c774c",
+        "android_client_info": {
+          "package_name": "com.example.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeKR8crsSV7Y5HQ1hnysajK3oUaLGprSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630607896229-0mmh61v5t1dtrnrmcvktf4oj331jnbqc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630607896229-ihgjhge7ma9i297ltuam6dt0605k70dg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arnous.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
