@@ -38,11 +38,17 @@ class HomePage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final user = FirebaseAuth.instance.currentUser;
-          if (user != null && user.emailVerified) {
-            return const Text('Done');
+          if (user != null) {
+            if (user.emailVerified) {
+              print('Email is verified');
+            } else {
+              return const VerifyEmailView();
+            }
           } else {
-            return const VerifyEmailView();
+            return const LoginView();
           }
+
+          return const Text('Done');
         }
 
         return const Center(child: CircularProgressIndicator());
