@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mynotes/constants/routes.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -60,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
                 );
                 if (!mounted) return; // to remove context problem
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/notes',
+                  notesRoute,
                   (route) => false,
                 );
               } on FirebaseAuthException catch (err) {
@@ -76,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register',
+                registerRoute,
                 (route) => false,
               );
             },
