@@ -61,11 +61,22 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                if (!mounted) return; // to remove context problem
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  notesRoute,
-                  (route) => false,
-                );
+                final user = FirebaseAuth.instance.currentUser;
+                if (user?.emailVerified ?? false) {
+                  // user's email is verified
+                  if (!mounted) return; // to remove context problem
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    notesRoute,
+                    (route) => false,
+                  );
+                } else {
+                  // user's email is not verified
+                  if(!mounted) return;
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    verifyEmailRoute,
+                    (route) => false,
+                  );
+                }
               } on FirebaseAuthException catch (err) {
                 if (err.code == 'user-not-found') {
                   await showErrorDialog(context, 'User not found');
