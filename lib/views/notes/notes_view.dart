@@ -75,7 +75,8 @@ class _NotesViewState extends State<NotesView> {
             return StreamBuilder(
               stream: _notesService.allNotes,
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    snapshot.connectionState == ConnectionState.active) {
                   return const Text('Waiting for all notes...');
                 }
 
