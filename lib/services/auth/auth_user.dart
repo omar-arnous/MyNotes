@@ -3,9 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart' show User;
 
 @immutable
 class AuthUser {
+  final String? email;
   final bool isEmailVerified;
-  const AuthUser({required this.isEmailVerified});
+  const AuthUser({required this.email, required this.isEmailVerified});
 
   factory AuthUser.fromFirebase(User user) =>
-      AuthUser(isEmailVerified: user.emailVerified);
+      AuthUser(email: user.email, isEmailVerified: user.emailVerified);
 }
