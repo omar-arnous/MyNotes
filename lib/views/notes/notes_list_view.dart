@@ -29,7 +29,7 @@ class NotesListView extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: () async {
-              final shouldDelete = await ShowDeleteDialog(context);
+              final shouldDelete = await showDeleteDialog(context);
               if (shouldDelete) {
                 onDeleteNote(note);
               }
