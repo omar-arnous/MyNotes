@@ -53,27 +53,30 @@ class _LoginViewState extends State<LoginView> {
             autocorrect: false,
             decoration: const InputDecoration(hintText: 'Enter your password'),
           ),
-          TextButton(
-            onPressed: () async {
-              final email = _email.text;
-              final password = _password.text;
-
-              try {
-                context.read<AuthBloc>().add(
-                      AuthEventLogIn(
-                        email: email,
-                        password: password,
-                      ),
-                    );
-              } on UserNotFoundAuthException {
-                await showErrorDialog(context, 'User not found');
-              } on WrongPasswordAuthException {
-                await showErrorDialog(context, 'Wrong credentials');
-              } on GenreicAuthException {
-                await showErrorDialog(context, 'Authentication Error');
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) async {
+              if (state is AuthStateLoggedOut) {
+                if (state.exception is UserNotFoundAuthException) {
+                  await showErrorDialog(context, 'User not found');
+                } else if (state.exception is WrongPasswordAuthException) {
+                  await showErrorDialog(context, 'Wrong credentials');
+                } else if (state.exception is GenreicAuthException) {
+                  await showErrorDialog(context, 'Authentication error');
+                }
               }
             },
-            child: const Text('Login'),
+            child: TextButton(
+              onPressed: () async {
+                final email = _email.text;
+                final password = _password.text;
+
+                context.read<AuthBloc>().add(AuthEventLogIn(
+                      email: email,
+                      password: password,
+                    ));
+              },
+              child: const Text('Login'),
+            ),
           ),
           TextButton(
             onPressed: () {
