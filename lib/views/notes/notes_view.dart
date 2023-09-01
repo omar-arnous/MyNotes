@@ -81,10 +81,10 @@ class _NotesViewState extends State<NotesView> {
               );
             }
 
-            return const CircularProgressIndicator();
+            return Center(child: const CircularProgressIndicator());
           }
 
-          return const CircularProgressIndicator();
+          return Center(child: const CircularProgressIndicator());
         },
       ),
     );

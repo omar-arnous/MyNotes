@@ -9,7 +9,11 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthProvider provider)
-      : super(AuthStateUninitialized(isLoading: true)) {
+      : super(const AuthStateUninitialized(isLoading: true)) {
+    on<AuthEventShouldRegister>((eevent, emit) {
+      emit(const AuthStateRegistering(exception: null, isLoading: false));
+    });
+
     // send email verification
     on<AuthEventSendEmailVerification>((event, emit) async {
       await provider.sendEmailVerification();
@@ -28,6 +32,44 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } on Exception catch (e) {
         emit(AuthStateRegistering(exception: e, isLoading: false));
       }
+    });
+
+    // Handling forget password
+    on<AuthEventForgetPassword>((event, emit) async {
+      emit(const AuthStateForgetPassword(
+        isLoading: false,
+        exception: null,
+        hasSentEmail: false,
+      ));
+
+      final email = event.email;
+      if (email == null) {
+        return;
+      }
+
+      emit(const AuthStateForgetPassword(
+        isLoading: true,
+        exception: null,
+        hasSentEmail: false,
+      ));
+
+      bool didSentEmail;
+      Exception? exception;
+
+      try {
+        await provider.sendPasswordReset(toEmail: email);
+        didSentEmail = true;
+        exception = null;
+      } on Exception catch (e) {
+        didSentEmail = false;
+        exception = e;
+      }
+
+      emit(AuthStateForgetPassword(
+        isLoading: false,
+        exception: exception,
+        hasSentEmail: didSentEmail,
+      ));
     });
 
     // Initialize
