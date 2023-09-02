@@ -15,13 +15,13 @@ class CreateUpdateNoteView extends StatefulWidget {
 
 class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   CloudNote? _note;
-  late final FirebaseCloudStroage _notesService;
+  late final FirebaseCloudStorage _notesService;
   late final TextEditingController _textController;
 
   @override
   void initState() {
     super.initState();
-    _notesService = FirebaseCloudStroage();
+    _notesService = FirebaseCloudStorage();
     _textController = TextEditingController();
   }
 

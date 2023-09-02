@@ -3,22 +3,24 @@ import 'package:mynotes/services/cloud/cloud_note.dart';
 import 'package:mynotes/services/cloud/cloud_storage_constants.dart';
 import 'package:mynotes/services/cloud/cloud_storage_exceptions.dart';
 
-class FirebaseCloudStroage {
+class FirebaseCloudStorage {
   final notes = FirebaseFirestore.instance.collection('notes');
 
   Future<void> deleteNote({required String documentId}) async {
     try {
       await notes.doc(documentId).delete();
-    } catch (_) {
+    } catch (e) {
       throw CouldNotDeleteNoteException();
     }
   }
 
-  Future<void> updateNote(
-      {required String documentId, required String text}) async {
+  Future<void> updateNote({
+    required String documentId,
+    required String text,
+  }) async {
     try {
       await notes.doc(documentId).update({textFieldName: text});
-    } catch (_) {
+    } catch (e) {
       throw CouldNotUpdateNoteException();
     }
   }
@@ -36,7 +38,6 @@ class FirebaseCloudStroage {
       ownerUserIdFieldName: ownerUserId,
       textFieldName: '',
     });
-
     final fetchedNote = await document.get();
     return CloudNote(
       documentId: fetchedNote.id,
@@ -45,9 +46,8 @@ class FirebaseCloudStroage {
     );
   }
 
-  static final FirebaseCloudStroage _shared =
-      FirebaseCloudStroage._sharedInstance();
-
-  FirebaseCloudStroage._sharedInstance();
-  factory FirebaseCloudStroage() => _shared;
+  static final FirebaseCloudStorage _shared =
+      FirebaseCloudStorage._sharedInstance();
+  FirebaseCloudStorage._sharedInstance();
+  factory FirebaseCloudStorage() => _shared;
 }
