@@ -63,28 +63,30 @@ class _NotesViewState extends State<NotesView> {
       body: StreamBuilder(
         stream: _notesService.allNotes(ownerUserId: userId),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting ||
-              snapshot.connectionState == ConnectionState.active) {
-            if (snapshot.hasData) {
-              final allNotes = snapshot.data as Iterable<CloudNote>;
-              return NotesListView(
-                notes: allNotes,
-                onDeleteNote: (note) async {
-                  await _notesService.deleteNote(documentId: note.documentId);
-                },
-                onTap: (note) {
-                  Navigator.of(context).pushNamed(
-                    createOrUpdateNoteRoute,
-                    arguments: note,
-                  );
-                },
-              );
-            }
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+            case ConnectionState.active:
+              if (snapshot.hasData) {
+                final allNotes = snapshot.data as Iterable<CloudNote>;
+                return NotesListView(
+                  notes: allNotes,
+                  onDeleteNote: (note) async {
+                    await _notesService.deleteNote(documentId: note.documentId);
+                  },
+                  onTap: (note) {
+                    Navigator.of(context).pushNamed(
+                      createOrUpdateNoteRoute,
+                      arguments: note,
+                    );
+                  },
+                );
+              } else {
+                return Center(child: const CircularProgressIndicator());
+              }
 
-            return Center(child: const CircularProgressIndicator());
+            default:
+              return Center(child: const CircularProgressIndicator());
           }
-
-          return Center(child: const CircularProgressIndicator());
         },
       ),
     );
